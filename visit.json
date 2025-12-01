@@ -1,0 +1,73 @@
+{
+  "display_properties": [
+    "session",
+    "hors_session",
+    "prospecte",
+    "visit_date_min",
+    "visit_heure_min",
+    "visit_heure_max",
+    "nb_observers",
+    "nb_observations"
+  ],
+  "display_list": [
+    "session",
+    "visit_date_min",
+    "id_dataset",
+    "nb_observations"
+  ],
+  "keep": [
+    "id_base_site",
+    "id_dataset"
+  ],
+  "specific": {
+    "id_base_site": {
+      "type_widget": "site",
+      "required": true,
+      "attribut_label": "Choix du site"
+    },
+    "visit_date_min": {
+      "required": true,
+      "attribut_label": "Date du relevé"
+    },
+    "visit_heure_min": {
+      "type_widget": "time",
+      "required": false,
+      "attribut_label": "Heure début du relevé"
+    },
+    "visit_heure_max": {
+      "type_widget": "time",
+      "required": false,
+      "attribut_label": "Heure fin du relevé"
+    },
+    "hors_session": {
+      "type_widget": "radio",
+      "required": true,
+      "attribut_label": "Visite hors session ?",
+      "values": ["true","false"]
+    },
+    "session": {
+      "type_widget": "number",
+      "required": true,
+      "attribut_label": "N° de session"
+    },
+    "prospecte": {
+      "type_widget": "radio",
+      "required": true,
+      "attribut_label": "Couverture du site prospecté",
+      "values": ["Totale", "Partielle", "Site non-réalisé"]
+    },
+    "nb_observers": {
+      "type_widget": "number",
+      "required": false,
+      "attribut_label": "Nombre d'observateurs"
+    },
+    "comments": {
+      "required": false,
+      "hidden": true
+    },
+    "observers": {
+      "required": false,
+      "hidden": true
+    }
+  }
+}

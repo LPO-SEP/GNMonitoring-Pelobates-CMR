@@ -1,0 +1,29 @@
+{
+  "label": "Choisir la réserve",
+  "label_list": "Choisir la réserve",
+  "sorts": [
+    {"prop": "sites_group_name"}
+  ],
+  "display_properties": [
+    "sites_group_name"
+  ],
+  "display_list": [
+    "sites_group_name",
+    "nb_sites",
+    "nb_visits"
+  ],
+  "specific": {
+    "sites_group_description": {
+      "required": false,
+      "hidden": true
+    },
+    "sites_group_code": {
+      "required": false,
+      "hidden": true
+    },
+    "comments": {
+      "required": false,
+      "hidden": true
+    }
+  }
+}

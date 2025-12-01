@@ -1,0 +1,40 @@
+{
+  "geometry_type": "Polygon",
+  "sorts": [
+    {"prop": "base_site_name"}
+  ],
+  "display_properties": [
+    "base_site_name",
+    "last_visit",
+    "nb_visits"
+  ],
+  "display_list": [
+    "base_site_name",
+    "last_visit",
+    "nb_visits"
+  ],
+  "specific": {
+    "id_nomenclature_type_site": {
+      "type_widget": "text",
+      "attribut_label": "Type site",
+      "type_util": "nomenclature",
+      "value": {
+        "code_nomenclature_type": "TYPE_SITE",
+        "cd_nomenclature": "SITE_SUIVI_PELOBATE"
+      },
+      "hidden": true
+    },
+    "id_inventor": {
+      "required": false,
+        "hidden": true
+    },
+    "base_site_code": {
+      "required": false,
+        "hidden": true
+    },
+    "first_use_date": {
+      "required": false,
+        "hidden": true
+    }
+  }
+}

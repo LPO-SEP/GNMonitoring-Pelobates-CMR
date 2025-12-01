@@ -1,0 +1,22 @@
+{
+    "module_label":"Pélobates cultripèdes",
+    "module_desc":"Module pour le suivi Pélobates cultripèdes automnal (protocole CEBC), toute réserve confondue",
+    "display_properties": ["module_label","module_desc"],
+    "b_draw_sites_group": false,
+    "genre":"M",
+    "specific": {
+      "b_draw_sites_group": {
+        "hidden": false
+      },
+      "cd_nom": {
+        "type_widget": "taxonomy",
+        "attribut_label": "Espèce",
+        "type_util": "taxonomy",
+        "required": true
+      },
+      "id_list_taxonomy": {
+        "hidden": true
+      }
+    }
+}
+

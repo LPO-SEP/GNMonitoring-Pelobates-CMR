@@ -1,0 +1,20 @@
+{
+  "tree": {
+    "module": {
+      "sites_group": {
+      "site": {
+        "visit": {
+          "observation": null
+        }
+      },
+      "individual": {
+        "marking": null
+      }
+    }
+  }
+  },
+  "data": {
+    "nomenclature": ["ACTION_CMR", "HYDROMETRIE", "ETAT_BIO", "VENT_FORCE", "VENT_DIRECTION", "ETAT_SOL", "SEXE", "STADE_VIE"],
+    "user": ["__CODE_LIST_INVENTOR", "__CODE_LIST_OBSERVER"]
+  }
+}

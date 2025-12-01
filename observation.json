@@ -1,0 +1,146 @@
+{
+  "display_properties": [
+    "observers_obs",
+    "heure_min",
+    "id_nomenclature_action",
+    "cd_nom",
+    "id_individual",
+    "masse",
+    "longueur",
+    "id_nomenclature_stade_vie",
+    "id_nomenclature_sexe",
+    "id_nomenclature_etat_sante",
+    "comments",
+    "x_wgs84",
+    "y_wgs84"
+  ],
+  "display_list": [
+    "cd_nom",
+    "heure_min",
+    "observers_obs",
+    "id_nomenclature_action",
+    "id_individual",
+    "id_nomenclature_stade_vie",
+    "id_nomenclature_sexe"
+  ],
+  "keep": [
+    "cd_nom",
+    "observers_obs"
+  ],
+  "specific": {
+    "observers_obs": {
+      "type_widget": "datalist",
+      "attribut_label": "Manipulateur",
+      "api": "users/menu/__MODULE.ID_LIST_OBSERVER",
+      "application": "GeoNature",
+      "keyValue": "id_role",
+      "keyLabel": "nom_complet",
+      "type_util": "user",
+      "multiple": false,
+      "required": true
+    },
+    "heure_min": {
+      "type_widget": "text",
+      "required": false,
+      "attribut_label": "Heure de l'observation"
+    },
+    "id_nomenclature_action": {
+      "type_widget": "datalist",
+      "attribut_label": "Action",
+      "api": "nomenclatures/nomenclature/ACTION_CMR",
+      "application": "GeoNature",
+      "keyValue": "id_nomenclature",
+      "keyLabel": "definition_fr",
+      "data_path": "values",
+      "type_util": "nomenclature",
+      "required": true
+    },
+    "cd_nom": {
+       "type_widget": "text",
+       "required": false,
+       "hidden": true
+    },
+    "id_individual": {
+      "type_widget": "individuals",
+      "attribut_label": "Choix de l'individu",
+      "id_module": "__MODULE.ID_MODULE",
+      "id_list": "__MODULE.ID_LIST_TAXONOMY",
+      "cd_nom": "__MODULE.CD_NOM",
+      "hidden": false
+    },
+    "tag": {
+      "type_widget": "text",
+      "attribut_label": "Tag de l'observation"
+    },
+    "masse": {
+      "type_widget": "number",
+      "attribut_label": "Masse de l'individu (g)",
+      "required": false
+    },
+    "longueur": {
+      "type_widget": "number",
+      "attribut_label": "Longueur de l'individu (mm)",
+      "required": false
+    },
+    "id_nomenclature_stade_vie": {
+      "type_widget": "datalist",
+      "attribut_label": "Stade de vie",
+      "api": "nomenclatures/nomenclature/STADE_VIE",
+      "application": "GeoNature",
+      "keyValue": "id_nomenclature",
+      "keyLabel": "label_fr",
+      "data_path": "values",
+      "type_util": "nomenclature",
+      "required": false,
+      "default": {
+          "cd_nomenclature": "0"
+      }
+    },
+    "id_nomenclature_sexe": {
+      "type_widget": "datalist",
+      "attribut_label": "Sexe",
+      "api": "nomenclatures/nomenclature/SEXE",
+      "application": "GeoNature",
+      "keyValue": "id_nomenclature",
+      "keyLabel": "label_fr",
+      "data_path": "values",
+      "type_util": "nomenclature",
+      "required": false,
+      "default": {
+          "cd_nomenclature": "0"
+      }
+    },
+    "id_nomenclature_etat_sante": {
+      "type_widget": "datalist",
+      "attribut_label": "Etat de santé",
+      "api": "nomenclatures/nomenclature/ETA_BIO",
+      "application": "GeoNature",
+      "keyValue": "id_nomenclature",
+      "keyLabel": "label_fr",
+      "data_path": "values",
+      "type_util": "nomenclature",
+      "required": false,
+      "default": {
+          "cd_nomenclature": "2"
+      }
+    },
+    "comments": {
+      "type_widget": "text",
+      "attribut_label": "Commentaire"
+    },
+    "x_wgs84": {
+      "type_widget": "number",
+      "attribut_label": "Longitude de l'observation (WGS84)",
+      "required": true,
+      "min": -6,
+      "max": 10
+    },
+    "y_wgs84": {
+      "type_widget": "number",
+      "attribut_label": "Latitude de l'observation (WGS84)",
+      "required": true,
+      "min": 42,
+      "max": 52
+    }
+  }
+}
