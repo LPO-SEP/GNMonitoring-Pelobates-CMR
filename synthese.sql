@@ -71,11 +71,11 @@ WITH source AS (
     SELECT
         array_agg(r.id_role) AS ids_observers,
         STRING_AGG(CONCAT(r.nom_role, ' ', prenom_role), ' ; ') AS observers,
-        id_observation
-    FROM gn_monitoring.cor_observation_observer cvo
+        id_base_visit
+    FROM gn_monitoring.cor_visit_observer cvo
     JOIN utilisateurs.t_roles r
     ON r.id_role = cvo.id_role
-    GROUP BY id_observation
+    GROUP BY id_base_visit
 
 ), individuals AS (
     
@@ -164,7 +164,7 @@ SELECT
      LEFT JOIN gn_commons.t_modules m ON m.id_module = v.id_module
      LEFT JOIN taxonomie.taxref t ON t.cd_nom = ind.cd_nom
      LEFT JOIN source ON true
-     LEFT JOIN observers obs ON obs.id_observation = o.id_observation
+     LEFT JOIN observers obs ON obs.id_base_visit = v.id_base_visit
     WHERE m.module_code = 'pelobates_cmr' AND o.cd_nom < 100000000
     ;
 
