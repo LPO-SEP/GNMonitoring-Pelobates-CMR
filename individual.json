@@ -1,0 +1,6 @@
+{
+    "specific": {
+        "individual_name": {"attribut_label": "Tag de l'individu"},
+        "id_nomenclature_sex": {"required": true}
+    }
+}

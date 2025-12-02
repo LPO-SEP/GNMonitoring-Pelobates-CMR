@@ -6,11 +6,13 @@
     "visit_date_min",
     "visit_heure_min",
     "visit_heure_max",
+    "id_dataset",
     "nb_observers",
     "nb_observations"
   ],
   "display_list": [
     "session",
+    "prospecte",
     "visit_date_min",
     "id_dataset",
     "nb_observations"

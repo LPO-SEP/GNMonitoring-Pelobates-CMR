@@ -19,8 +19,8 @@
 -- ne pas remplacer cette variable, elle est indispensable pour les scripts d'installations
 -- le module pouvant être installé avec un code différent de l'original
 
-DROP VIEW IF EXISTS gn_monitoring.v_synthese_:module_code;
-CREATE VIEW gn_monitoring.v_synthese_:module_code AS
+DROP VIEW IF EXISTS gn_monitoring.v_synthese_pelobates_cmr;
+CREATE VIEW gn_monitoring.v_synthese_pelobates_cmr AS
 
 WITH source AS (
 
@@ -29,7 +29,7 @@ WITH source AS (
         id_source
 
     FROM gn_synthese.t_sources
-	WHERE name_source = CONCAT('MONITORING_', UPPER(:'module_code'))
+	WHERE name_source = CONCAT('MONITORING_', UPPER('pelobates_cmr'))
 	LIMIT 1
 
 ), sites AS (
@@ -76,6 +76,19 @@ WITH source AS (
     JOIN utilisateurs.t_roles r
     ON r.id_role = cvo.id_role
     GROUP BY id_observation
+
+), individuals AS (
+    
+    SELECT
+		id_individual,
+		uuid_individual,
+		individual_name,
+		cd_nom,
+		id_nomenclature_sex,
+		active,
+        comment
+	FROM gn_monitoring.t_individuals
+
 )
 
 SELECT
@@ -97,7 +110,7 @@ SELECT
 		--id_nomenclature_valid_status,  --STATUT_VALID
 		--id_nomenclature_diffusion_level, -- NIV_PRECIS
 		(oc.data ->> 'id_nomenclature_stade_vie'::text)::integer AS id_nomenclature_life_stage, -- STADE_VIE
-		(oc.data ->> 'id_nomenclature_sexe'::text)::integer AS id_nomenclature_sex, -- SEXE
+		ind.id_nomenclature_sex, -- SEXE
  		ref_nomenclatures.get_id_nomenclature('IND', 'OBJ_DENBR') AS id_nomenclature_obj_count,
  		ref_nomenclatures.get_id_nomenclature('TYP_DENBR', 'Es') AS id_nomenclature_type_count,
  		-- id_nomenclature_sensitivity, --SENSIBILITE
@@ -110,7 +123,7 @@ SELECT
 		1 AS count_min,
 		1 AS count_max,
 		o.id_observation,
-		o.cd_nom,
+		ind.cd_nom,
 		t.nom_complet AS nom_cite,
 		--meta_v_taxref
 		--sample_number_proof
@@ -139,20 +152,21 @@ SELECT
 		-- ## Colonnes complémentaires qui ont leur utilité dans la fonction synthese.import_row_from_table
 		v.id_base_site,
 		v.id_base_visit,
-	 vc.data || oc.data as additional_data
+	 	vc.data || oc.data as additional_data
    FROM gn_monitoring.t_observations o
      LEFT JOIN gn_monitoring.t_observation_complements oc ON oc.id_observation = o.id_observation
+	 LEFT JOIN individuals ind ON ind.id_individual = o.id_individual
 	  LEFT JOIN visits v ON v.id_base_visit = o.id_base_visit
 	  LEFT JOIN gn_monitoring.t_visit_complements vc ON vc.id_base_visit = v.id_base_visit
 	  LEFT JOIN sites s ON s.id_base_site = v.id_base_site
      LEFT JOIN gn_monitoring.t_site_complements sc ON sc.id_base_site = s.id_base_site
      LEFT JOIN gn_monitoring.t_sites_groups sg ON sg.id_sites_group = sc.id_sites_group
      LEFT JOIN gn_commons.t_modules m ON m.id_module = v.id_module
-     LEFT JOIN taxonomie.taxref t ON t.cd_nom = o.cd_nom
+     LEFT JOIN taxonomie.taxref t ON t.cd_nom = ind.cd_nom
      LEFT JOIN source ON true
      LEFT JOIN observers obs ON obs.id_observation = o.id_observation
-    WHERE m.module_code = :'module_code' AND o.cd_nom < 100000000
+    WHERE m.module_code = 'pelobates_cmr' AND o.cd_nom < 100000000
     ;
 
 
-SELECT * FROM gn_monitoring.v_synthese_:module_code
+SELECT * FROM gn_monitoring.v_synthese_pelobates_cmr

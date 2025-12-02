@@ -15,6 +15,7 @@
         "required": true
       },
       "id_list_taxonomy": {
+        "required": false,
         "hidden": true
       }
     }
